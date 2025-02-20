@@ -1,54 +1,85 @@
-# Storefront Backend Project
+# StoreFront Backend API
+
+## Overview
+
+This project involves designing the database architecture for an online store, including tables and columns to meet data requirements, and developing a RESTful API to provide this data to frontend developers.
+
+The project requirements are detailed in a separate requirements document.
 
 ## Getting Started
 
-This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
+### PostgreSQL Database Setup
 
-## Required Technologies
-Your application must make use of the following libraries:
-- Postgres for the database
-- Node/Express for the application logic
-- dotenv from npm for managing environment variables
-- db-migrate from npm for migrations
-- jsonwebtoken from npm for working with JWTs
-- jasmine from npm for testing
+1. **Connect as the postgres user**: 
+   ```bash
+   psql -U postgres
+   ```
 
-## Steps to Completion
+2. **Create the main database**: 
+   ```sql
+   CREATE DATABASE storefront;
+   ```
 
-### 1. Plan to Meet Requirements
+3. **Create a test database**: 
+   ```sql
+   CREATE DATABASE storefront_test;
+   ```
 
-In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API. 
+4. **Connect to the main database**: 
+   ```sql
+   \c storefront
+   ```
 
-Your first task is to read the requirements and update the document with the following:
-- Determine the RESTful route for each endpoint listed. Add the RESTful route and HTTP verb to the document so that the frontend developer can begin to build their fetch requests.    
-**Example**: A SHOW route: 'blogs/:id' [GET] 
+### Step 1: Clone the Repository
 
-- Design the Postgres database tables based off the data shape requirements. Add to the requirements document the database tables and columns being sure to mark foreign keys.   
-**Example**: You can format this however you like but these types of information should be provided
-Table: Books (id:varchar, title:varchar, author:varchar, published_year:varchar, publisher_id:string[foreign key to publishers table], pages:number)
+Clone this repository to your local machine.
 
-**NOTE** It is important to remember that there might not be a one to one ratio between data shapes and database tables. Data shapes only outline the structure of objects being passed between frontend and API, the database may need multiple tables to store a single shape. 
+### Step 2: Install Dependencies
 
-### 2.  DB Creation and Migrations
+Run the following command to install the necessary dependencies:
 
-Now that you have the structure of the databse outlined, it is time to create the database and migrations. Add the npm packages dotenv and db-migrate that we used in the course and setup your Postgres database. If you get stuck, you can always revisit the database lesson for a reminder. 
 
-You must also ensure that any sensitive information is hashed with bcrypt. If any passwords are found in plain text in your application it will not pass.
+### Step 3: Configure Environment Variables
 
-### 3. Models
+Create a `.env` file with the necessary parameters to connect to the PostgreSQL database. If the `ENV` variable is set to `test`, the application will use the `storefront_test` database. The `.env` file should look like this:
 
-Create the models for each database table. The methods in each model should map to the endpoints in `REQUIREMENTS.md`. Remember that these models should all have test suites and mocks.
+```
+POSTGRES_HOST=localhost
+POSTGRES_DB=storefront
+POSTGRES_TEST_DB=storefront_test
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password
+POSTGRES_PORT=5432
+BCRYPT_PASSWORD=password
+SALT_ROUND=10
+TOKEN_SECRET=secret
+ENV=dev
+```
 
-### 4. Express Handlers
+The database will be accessible on port 5432, and the server will be available at https://localhost:3000.
 
-Set up the Express handlers to route incoming requests to the correct model method. Make sure that the endpoints you create match up with the enpoints listed in `REQUIREMENTS.md`. Endpoints must have tests and be CORS enabled. 
+## API Endpoints
 
-### 5. JWTs
+### Users
 
-Add JWT functionality as shown in the course. Make sure that JWTs are required for the routes listed in `REQUIUREMENTS.md`.
+- **Get all users**: `GET /users` [Requires token]
+- **Get user by ID**: `GET /users/:id` [Requires token]
+- **Create a new user**: `POST /users` [Requires token]
+- **Delete a user**: `DELETE /users/:id` [Requires token]
 
-### 6. QA and `README.md`
+### Products
 
-Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
+- **Get all products**: `GET /products`
+- **Get product by ID**: `GET /products/:id`
+- **Create a new product**: `POST /products` [Requires token]
+- **Delete a product**: `DELETE /products/:id` [Requires token]
 
-Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+### Orders
+
+- **Get current order by user ID**: `GET /orders/:id` [Requires token]
+
+## Available Commands
+
+- **Start the server**: `npm run start` or `yarn start`
+- **Run tests**: `npm run test` or `yarn test`
+- **Watch for changes**: `npm run watch` or `yarn watch`
