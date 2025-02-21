@@ -66,19 +66,28 @@ The database will be accessible on port 5432, and the server will be available a
 
 - **Get all users**: `GET /users` [Requires token]
 - **Get user by ID**: `GET /users/:id` [Requires token]
-- **Create a new user**: `POST /users` [Requires token]
+- **Update a user**: `PUT /users/:id` [Requires token]
+- **Create a new user**: `POST /users` 
 - **Delete a user**: `DELETE /users/:id` [Requires token]
+- **Authenticate a user**: `POST /users/authenticate`
 
 ### Products
 
 - **Get all products**: `GET /products`
 - **Get product by ID**: `GET /products/:id`
-- **Create a new product**: `POST /products` [Requires token]
-- **Delete a product**: `DELETE /products/:id` [Requires token]
+- **Create a new product**: `POST /products` 
+- **Update a product**: `PUT /products/:id`
+- **Delete a product**: `DELETE /products/:id`
 
 ### Orders
 
 - **Get current order by user ID**: `GET /orders/:id` [Requires token]
+- **Add a product to an order**: `POST /orders/:id/products` [Requires token]
+- **Get all orders**: `GET /orders` [Requires token]
+
+### Dashboard
+
+- **Get popular products**: `GET /dashboard/popular-products` [Requires token]
 
 ## Available Commands
 

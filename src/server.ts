@@ -11,16 +11,16 @@ const address: string = "0.0.0.0:3000";
 app.use(bodyParser.json());
 
 // Use user routes
-app.use("/api/users", userRoutes);
+app.use("/users", userRoutes);
 
 // Use product routes
-app.use("/api/products", productRoutes);
+app.use("/products", productRoutes);
 
 // Use order routes
-app.use("/api/orders", orderRoutes);
+app.use("/orders", orderRoutes);
 
 // Use dashboard routes
-app.use("/api/dashboard", dashboardRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 app.get("/", function (_req: Request, res: Response) {
   res.send("Hello World!");
