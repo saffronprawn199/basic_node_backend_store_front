@@ -96,13 +96,6 @@ const authenticate = async (req: Request, res: Response) => {
   }
 };
 
-router.post("/test", upload.any(), (req: Request, res: Response) => {
-  // upload.any() handles any type of file
-  console.log("Body:", req.body); // Log the text fields
-  console.log("Files:", req.files); // Log the files
-  res.send("Data received!");
-});
-
 router.get("/", verifyAuthToken, index);
 router.get("/:id", verifyAuthToken, show);
 router.post("/", upload.any(), create);

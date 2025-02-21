@@ -67,7 +67,7 @@ The database will be accessible on port 5432, and the server will be available a
 - **Get all users**: `GET /users` [Requires token]
 - **Get user by ID**: `GET /users/:id` [Requires token]
 - **Update a user**: `PUT /users/:id` [Requires token]
-- **Create a new user**: `POST /users` 
+- **Create a new user**: `POST /users`
 - **Delete a user**: `DELETE /users/:id` [Requires token]
 - **Authenticate a user**: `POST /users/authenticate`
 
@@ -75,7 +75,7 @@ The database will be accessible on port 5432, and the server will be available a
 
 - **Get all products**: `GET /products`
 - **Get product by ID**: `GET /products/:id`
-- **Create a new product**: `POST /products` 
+- **Create a new product**: `POST /products`
 - **Update a product**: `PUT /products/:id`
 - **Delete a product**: `DELETE /products/:id`
 

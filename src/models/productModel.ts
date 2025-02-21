@@ -13,7 +13,6 @@ export class ProductModel {
         "INSERT INTO products (name, price, category) VALUES ($1, $2, $3) RETURNING *",
         [name, price, category],
       );
-      console.log("Result: ", result.rows[0]);
       return result.rows[0];
     } catch (err) {
       throw new Error(`Could not create product: ${err}`);
