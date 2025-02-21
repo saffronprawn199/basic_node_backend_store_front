@@ -10,22 +10,25 @@ The project requirements are detailed in a separate requirements document.
 
 ### PostgreSQL Database Setup
 
-1. **Connect as the postgres user**: 
+1. **Connect as the postgres user**:
+
    ```bash
    psql -U postgres
    ```
 
-2. **Create the main database**: 
+2. **Create the main database**:
+
    ```sql
    CREATE DATABASE storefront;
    ```
 
-3. **Create a test database**: 
+3. **Create a test database**:
+
    ```sql
    CREATE DATABASE storefront_test;
    ```
 
-4. **Connect to the main database**: 
+4. **Connect to the main database**:
    ```sql
    \c storefront
    ```
@@ -37,7 +40,6 @@ Clone this repository to your local machine.
 ### Step 2: Install Dependencies
 
 Run the following command to install the necessary dependencies:
-
 
 ### Step 3: Configure Environment Variables
 
